@@ -1,0 +1,33 @@
+<h1><%= @folder.name %></h1>
+
+<% @folder.cards.each do |card| %>
+  <p><%= card.word %> - <%= card.translation %></p>
+
+  <%= form_with model: [@folder, card], url: folder_card_path(@folder, card) do |form| %>
+    <%= form.text_field :word %>
+    <%= form.text_field :translation %>
+    <%= form.submit 'Change' %>
+  <% end %>
+
+  <%= form_with(model: [@folder, card], url: folder_card_path(@folder, card), method: :delete) do |form| %>
+    <%= form.submit 'Delete' %>
+  <% end %>
+<% end %>
+
+<p></p>
+<p></p>
+
+<%= form_with model: [@folder, Card.new], url: folder_cards_path(@folder), method: :post, local: false do |form| %>
+  <%= form.text_field :word,        name: 'card[word]',        placeholder: "word" %>
+  <%= form.text_field :translation, name: 'card[translation]', placeholder: "translation" %>
+  <%= form.submit "Create Card" %>
+
+  <% flash.each do |type, message| %>
+    <div class="flash <%= type %>"><%= message %></div>
+  <% end %>
+<% end %>
+
+<p></p>
+<p></p>
+
+<%= link_to 'Back to folders', folders_path %>

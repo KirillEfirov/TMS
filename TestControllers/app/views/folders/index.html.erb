@@ -1,0 +1,22 @@
+<h1>Available folders</h1>
+
+<ol>
+  <% @folders.each do |folder| %>
+    <li><%= link_to folder.name, folder %></li>
+
+    <%= form_with model: folder do |form| %>
+      <%= form.text_field :name %>
+      <%= form.submit 'Change' %>
+    <% end %>
+
+    <p>Number of cards: <%= folder.cards.size %></p>
+
+    <%= button_to 'Delete', folder_path(folder), method: :delete %>
+    <p></p>
+  <% end %>
+</ol>
+
+<%= form_with model: @folder, url: folders_path, method: :post, local: true do |form| %>
+  <%= form.text_field :name, name: 'folder[name]' %>
+  <%= form.submit 'Create folder' %>
+<% end %>
