@@ -1,0 +1,9 @@
+<%= @cards %>
+
+<% @cards.each do |hash| %> 
+  <% hash.each do |word, translation| %>
+    <% next if word.empty? or translation.empty? %>
+    
+    <p><%= word %> - <%= translation %></p>
+  <% end %>
+<% end %>
