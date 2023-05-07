@@ -1,0 +1,18 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<%= form_with model: [@user, User.new], url: users_path, method: :post, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, name: 'user[name]' %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, name: 'user[email]' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, name: 'user[password]' %>
+
+  <%= f.label :password_confirmation, 'Confirmation' %>
+  <%= f.password_field :password_confirmation, name: 'user[password_confirmation]' %>
+
+  <%= f.submit 'Create my account' %>
+<% end %>
