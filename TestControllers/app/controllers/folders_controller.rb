@@ -10,31 +10,29 @@ class FoldersController < ApplicationController
   def create
     @folder = Folder.new(folder_params)
 
-    if @folder.save
-      redirect_to folders_path
-    else
-      render :index
-    end
+    @folder.save
+
+    redirect_to folders_path
   end
 
   def update
     @folder = Folder.find(params[:id])
 
-    if @folder.update(folder_params)
-      redirect_to folders_path
-    else
-      render :index
-    end
+    @folder.update(folder_params)
+
+    redirect_to folders_path
   end
 
   def destroy
     @folder = Folder.find(params[:id])
 
-    if @folder.destroy
-      redirect_to folders_path
-    else
-      render :index
-    end
+    @folder.destroy
+
+    redirect_to folders_path
+  end
+
+  def learn
+    @cards = WordlistCreator.call
   end
 
   private
