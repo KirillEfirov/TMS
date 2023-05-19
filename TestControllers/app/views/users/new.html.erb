@@ -1,5 +1,6 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+
+<h1><%= yield(:title) %></h1>
 
 <%= form_with model: [@user, User.new], url: users_path, method: :post, local: true do |f| %>
   <%= f.label :name %>
@@ -16,3 +17,5 @@
 
   <%= f.submit 'Create my account' %>
 <% end %>
+
+<p><%= link_to 'Log in', login_path %></p>
