@@ -1,6 +1,22 @@
 <% provide(:title, @user.name) %>
 
-<h1>
-  <%= gravatar_for(@user) %>
-  <%= @user.name %>
-</h1>
+<% if logged_in?(current_user) %>
+  <%= link_to "Profile", user_path(current_user) %>
+  <%= link_to "Users",    users_path %>
+  <%= link_to "Settings", '#' %>
+  <%= button_to "Log out", logout_path, :method => "delete" %>
+  <%#= link_to "Log out", logout_path, method: :delete %>
+
+  <h1>
+    <%= gravatar_for(@user) %>
+    <%= yield(:title) %>,
+    <%= @user.email %>
+  </h1>
+
+  <p>Current user's token: <%= session[:user_token] %></p>
+
+<% else %>
+  <%= link_to "Log in", login_path %>
+  <p></p>
+  New user? <%= link_to "Sign up", signup_path %>
+<% end %>
