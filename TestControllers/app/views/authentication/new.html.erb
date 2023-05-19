@@ -1,0 +1,21 @@
+<% provide(:title, 'Log in') %>
+
+<h1><%= yield(:title) %></h1>
+
+<p>
+<% unless flash.empty? %>
+  <%= flash[:danger] %>
+<% end %>
+</p>
+
+<%= form_with model: [@user, User.new], url: login_path, method: :post, local: true do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email, name: 'user[email]' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, name: 'user[password]' %>
+
+  <%= f.submit 'Log in' %>
+<% end %>
+
+<p>New user? <%= link_to 'Sign up now', signup_path %></p>
