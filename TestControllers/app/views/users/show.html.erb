@@ -1,4 +1,4 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, "#{@user.name} profile") %>
 
 <% if logged_in?(@current_user) %>
   <%= link_to "Profile", user_path(@current_user) %>
