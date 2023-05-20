@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/login', to: 'authentication#create'
   delete '/logout', to: 'authentication#destroy', as: 'logout'
 
-  root 'folders#index'
+  root 'users#index'
 
   get '/folders/learn', to: 'folders#learn'
 
