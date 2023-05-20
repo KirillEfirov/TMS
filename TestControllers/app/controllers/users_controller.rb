@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @current_user = current_user
+    @folders = Folder.includes(:cards).where(user: @user)
   end
 
   def new
