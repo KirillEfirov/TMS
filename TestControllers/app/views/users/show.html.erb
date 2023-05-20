@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 
-<% if logged_in?(current_user) %>
-  <%= link_to "Profile", user_path(current_user) %>
+<% if logged_in?(@current_user) %>
+  <%= link_to "Profile", user_path(@current_user) %>
   <%= link_to "Users",    users_path %>
   <%= link_to "Settings", '#' %>
   <%= button_to "Log out", logout_path, :method => "delete" %>
