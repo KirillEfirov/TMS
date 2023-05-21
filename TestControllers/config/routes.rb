@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'relationships/create'
+  delete 'relationships/destroy'
+
   resources :users, except: %i[new edit] do
     get :following, :followers, on: :member
   end
