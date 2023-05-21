@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :users, except: %i[new edit]
+  resources :users, except: %i[new edit] do
+    get :following, :followers, on: :member
+  end
 
   get '/signup', to: 'users#new'
   get '/login', to: 'authentication#new'
@@ -8,9 +10,8 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
-  get '/folders/learn', to: 'folders#learn'
-
   resources :folders, except: %i[new edit] do
+    get :learn, on: :collection
     resources :cards, only: %i[create update destroy]
   end
 end
