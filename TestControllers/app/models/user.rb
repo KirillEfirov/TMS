@@ -22,10 +22,14 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   def follow(another_user)
+    return if active_relationships.exists?(followed_id: another_user.id)
+
     active_relationships.create(followed_id: another_user.id)
   end
 
   def unfollow(another_user)
+    return unless active_relationships.exists?(followed_id: another_user.id)
+
     active_relationships.find_by(followed_id: another_user.id).destroy
   end
 
