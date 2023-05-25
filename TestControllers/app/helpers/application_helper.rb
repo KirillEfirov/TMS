@@ -28,4 +28,13 @@ module ApplicationHelper
   def logged_in?(current_user)
     !current_user.nil?
   end
+
+  def log_in(token)
+    session[:user_token] = token
+  end
+
+  def log_out
+    session.delete(:user_token)
+    @current_user = nil
+  end
 end
