@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def current_user
-    decoded = decode_token(session[:user_token])
+    decoded = decode_token(cookies[:user_token])
 
     if decoded.nil?
       @current_user = nil
@@ -29,12 +29,12 @@ module ApplicationHelper
     !current_user.nil?
   end
 
-  def log_in(token)
-    session[:user_token] = token
+  def set_cookie(token)
+    cookies[:user_token] = token
   end
 
-  def log_out
-    session.delete(:user_token)
+  def delete_cookie
+    cookies.delete(:user_token)
     @current_user = nil
   end
 end
