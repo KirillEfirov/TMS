@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   get '/login', to: 'authentication#new'
-  post '/login', to: 'authentication#create'
-  delete '/logout', to: 'authentication#destroy', as: 'logout'
+  post '/login', to: 'authentication#login'
+  delete '/logout', to: 'authentication#logout', as: 'logout'
 
   root 'users#index'
 
