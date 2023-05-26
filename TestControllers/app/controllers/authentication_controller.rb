@@ -3,7 +3,7 @@ class AuthenticationController < ApplicationController
     @user = User.new
   end
 
-  def create
+  def login
     @user = User.find_by(email: params[:user][:email])
 
     if @user&.authenticate(params[:user][:password])
@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
     end
   end
 
-  def destroy
+  def logout
     delete_cookie
 
     redirect_to root_path
