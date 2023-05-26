@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
 
     if @user&.authenticate(params[:user][:password])
       token = encode_token(user_id: @user.id)
-      log_in(token)
+      set_cookie(token)
 
       redirect_to user_path(@user)
     else
@@ -18,7 +18,7 @@ class AuthenticationController < ApplicationController
   end
 
   def destroy
-    log_out
+    delete_cookie
 
     redirect_to root_path
   end
