@@ -31,10 +31,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def upload
+    user = User.find(params[:id])
+
+    user.avatar = params[:user][:avatar]
+
+    if user.save
+      redirect_to user
+    else
+      redirect_to user
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
 
   def find_user
