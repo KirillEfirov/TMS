@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
+  # validates :password, presence: true, length: { minimum: 6 }
 
   def follow(another_user)
     return if active_relationships.exists?(followed_id: another_user.id)
