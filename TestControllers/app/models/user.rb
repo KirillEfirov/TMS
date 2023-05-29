@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relatioships, source: :follower
 
+  mount_uploader :avatar, AvatarUploader
+
   before_save { self.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
