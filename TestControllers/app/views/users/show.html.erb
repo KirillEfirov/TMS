@@ -22,7 +22,19 @@
   <% end %>
 
   <h1>
-    <%= gravatar_for(@user) %>
+    <%#= gravatar_for(@user) %>
+    <%= form_with(model: @current_user, url: upload_user_path(@current_user), local: true, method: :post) do |form| %>
+      <%= form.label :avatar %>
+      <%= form.file_field :avatar %>
+      <%= form.submit 'Upload'%>
+    <% end %>
+
+    <%# if @current_user.avatar.attached? %>
+      <%#= image_tag(@current_user.avatar) %>
+    <%# end %>
+
+    <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+
     <%= yield(:title) %>,
     <%= @user.email %>
   </h1>
