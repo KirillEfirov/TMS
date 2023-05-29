@@ -22,9 +22,16 @@
   <% end %>
 
   <h1>
-    <%= gravatar_for(@user) %>
+    <%#= gravatar_for(@user) %>
     <%= yield(:title) %>,
     <%= @user.email %>
+
+    <%= form_for @user, url: upload_user_path(@user), method: :patch, html: { multipart: true } do |f| %>
+      <%= f.file_field :avatar %>
+      <%= f.submit 'Upload' %>
+    <% end %>
+
+    <%= image_tag @user.avatar.url if @user.avatar? %>
   </h1>
 
   <a href="<%= following_user_path(@user) %>">following <%= @user.following.count %></a>
