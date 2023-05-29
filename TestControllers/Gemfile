@@ -78,3 +78,7 @@ end
 gem 'faker'
 gem 'jwt'
 gem 'pry', '~> 0.13.1'
+
+# For image uploading
+gem 'carrierwave'
+gem 'mini_magick'
