@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, except: %i[new edit] do
     get :following, :followers, on: :member
+    post :upload, on: :member
   end
 
   get '/signup', to: 'users#new'
