@@ -80,5 +80,6 @@ gem 'jwt'
 gem 'pry', '~> 0.13.1'
 
 # For image uploading
-gem 'carrierwave'
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'mini_magick'
+gem 'rmagick'
