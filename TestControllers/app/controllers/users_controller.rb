@@ -39,26 +39,8 @@ class UsersController < ApplicationController
   def upload
     user = User.find(params[:id])
     if params[:user].present? && params[:user][:avatar].present?
-      uploaded_file = params[:user][:avatar]
-      file_path = Rails.root.join('storage', uploaded_file.original_filename)
 
-      # Save the file to the desired storage location
-      File.open(file_path, 'wb') do |file|
-        file.write(uploaded_file.read)
-      end
-
-      # Update the user's avatar attribute with the file path
-      # user.update(avatar: file_path.to_s)
-
-      # user.avatar.attach(params[:user][:avatar])
-      # user.update
-
-      # user.avatar = file_path.to_s
-      # user.save
-
-      user.avatar.attach(io: File.open(file_path.to_s), filename: uploaded_file.original_filename)
-
-      # user.avatar.attach(io: File.open(file_path), filename: uploaded_file.original_filename)
+      user.avatar.attach(params[:user][:avatar])
 
       redirect_to user, notice: 'Avatar uploaded successfully!'
     else
