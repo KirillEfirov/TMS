@@ -24,27 +24,13 @@ class UsersController < ApplicationController
     end
   end
 
-=begin
   def upload
     if params[:user].present? && params[:user][:avatar].present?
       @user.avatar.attach(params[:user][:avatar])
-      # user.update(avatar: params[:user][:avatar])
-      redirect_to user, notice: 'Avatar uploaded successfully.'
+
+      redirect_to @user, notice: 'Avatar uploaded successfully!'
     else
-      redirect_to user, notice: 'Avatar uploaded unsuccessfully.'
-    end
-  end
-=end
-
-  def upload
-    user = User.find(params[:id])
-    if params[:user].present? && params[:user][:avatar].present?
-
-      user.avatar.attach(params[:user][:avatar])
-
-      redirect_to user, notice: 'Avatar uploaded successfully!'
-    else
-      redirect_to user, alert: 'No file selected for upload!'
+      redirect_to @user, alert: 'No file selected for upload!'
     end
   end
 
