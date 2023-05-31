@@ -13,10 +13,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relatioships, source: :follower
 
-  # has_one_attached :avatar
-  has_one_attached :avatar do |attachable|
-    attachable.variant :thumb, resize_to_limit: [100, 100]
-  end
+  has_one_attached :avatar
 
   before_save { self.email = email.downcase }
 
