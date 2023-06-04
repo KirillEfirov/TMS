@@ -36,7 +36,7 @@
   <a href="<%= following_user_path(@user) %>">following <%= @user.following.count %></a>
   <a href="<%= followers_user_path(@user) %>">followers <%= @user.followers.count %></a>
 
-  <p>Current user's token: <%= session[:user_token] %></p>
+  <p>Current user's token: <%= cookies[:user_token] %></p>
 
   <h1>Available folders</h1>
 
