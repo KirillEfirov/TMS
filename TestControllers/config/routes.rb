@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     post :upload, on: :member
   end
 
-  get '/signup', to: 'users#new'
+  get '/signup', to: 'registration#new'
+  post '/signup', to: 'registration#sign_up'
+
   get '/login', to: 'authentication#new'
   post '/login', to: 'authentication#login'
   delete '/logout', to: 'authentication#logout', as: 'logout'
