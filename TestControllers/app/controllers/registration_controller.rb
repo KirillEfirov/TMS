@@ -10,6 +10,8 @@ class RegistrationController < ApplicationController
       token = encode_token(user_id: @user.id)
       set_cookie(token)
 
+      UserMailer.send_signup_email(@user).deliver
+
       redirect_to user_path(@user)
     else
       render 'new'
